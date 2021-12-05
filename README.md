@@ -1,5 +1,5 @@
 # vue-blog
-[demo](https://kelyu0.github.io/)
+[demo](https://blateyang.github.io/)
 ## Project setup
 ```
 npm install

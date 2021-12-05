@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link class="header-logo" :to="{ name: 'Posts' }">KK's VueBlog</router-link>
+    <router-link class="header-logo" :to="{ name: 'Posts' }">Blateyang's VueBlog</router-link>
     <!-- <input type="text" class="header-search" v-model="keyword" @keyup.enter="getIssues()" placeholder="输入文章标题或内容，按回车搜索..." /> -->
     <div class="header-dropdown">
       <button @click="setActiveLabel(null)" class="dropdown-button">Tags</button>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <router-link class="header-about" :to="{ name: 'About' }">About</router-link>
-    <a :href="project.reactIssueBlog.demo"> Version React </a>
+    <a :href="project.vueIssueBlog.demo"> Version Vue </a>
   </div>
 </template>
 

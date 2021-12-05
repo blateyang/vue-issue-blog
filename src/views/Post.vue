@@ -1,8 +1,10 @@
 <template>
   <div class="content-layout">
     <aside class="catalog-container">
-      <div v-for="catalog in catalogs" :key="catalog.title">
-        <a :class="`article-catalog-h${catalog.level}`" :href="`#${catalog.title}`">{{ catalog.title }}</a>
+      <div class="catalog">
+        <div v-for="catalog in catalogs" :key="catalog.title">
+          <a :class="`article-catalog-h${catalog.level}`" :href="`#${catalog.title}`">{{ catalog.title }}</a>
+        </div>
       </div>
     </aside>
     <div class="main-container">
@@ -70,6 +72,7 @@
         let tocHtml = htmlContent.match(/<(h\d).*?>.*?<\/h\d>/g);
         tocHtml.forEach((item, index) => {
           // let _toc = `<div id='${catalogs[index].title}'>${item} </div>`;
+          // 将原tocHtml中h标签的"0-引言"id属性换成"0 引言"id属性，以便能和目录a标签的href属性值对得上，实现锚点导航
           let _toc = item.replace(/".*"/g, `"${catalogs[index].title}"`);
 
           htmlContent = htmlContent.replace(item, _toc);
@@ -86,8 +89,16 @@
   }
   .catalog-container {
     border-right: 1px solid #eeeeee;
-    padding: 20px;
-    height: 100%;
+    padding: 10px;
+    height: auto;
+  }
+  .catalog {
+    position: sticky;
+    left: 10px;
+    top: 10px;
+    width: 300px;
+    height: 100vh;
+    overflow: auto;
   }
   .main-container {
     flex-grow: 1;
@@ -161,7 +172,14 @@
       flex-flow: column;
       flex-direction: column;
     }
-
+    .catalog {
+      position: sticky;
+      left: 10px;
+      top: 10px;
+      width: 300px;
+      height: 100vh;
+      overflow: auto;
+    }
     .main-container > article,
     .catalog-container > aside {
       /* 恢复到文档内的自然顺序 */
